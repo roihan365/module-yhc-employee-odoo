@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Rule untuk semua user (selain HR & Admin) hanya bisa READ -->
+    <record id="hr_employee_readonly_rule" model="ir.rule">
+        <field name="name">Employee readonly for non-HR</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/> <!-- Semua user -->
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+</odoo>

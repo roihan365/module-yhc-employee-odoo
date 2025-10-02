@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_employee_form_inherit_labels" model="ir.ui.view">
+    <field name="name">hr.employee.form.inherit.labels</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form"/>
+    <field name="arch" type="xml">
+
+      <!-- Ubah label Work Phone -->
+      <xpath expr="//field[@name='work_phone']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="string">No. WA</attribute>
+      </xpath>
+
+      <!-- Ubah label Mobile -->
+      <xpath expr="//field[@name='mobile_phone']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="string">No. Telepon (2)</attribute>
+      </xpath>
+
+      <!-- Ubah label Work Email -->
+      <xpath expr="//field[@name='work_email']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="string">Email</attribute>
+      </xpath>
+
+      <!-- Ubah label Department -->
+      <xpath expr="//field[@name='department_id']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="string">Unit Kerja</attribute>
+      </xpath>
+
+      <!-- Tambah Area Kerja setelah Unit Kerja -->
+      <xpath expr="//field[@name='department_id']" position="after" groups="base.group_hr_user">
+        <field name="area_kerja" readonly="1"/>
+      </xpath>
+
+      <!-- Tambah NRP setelah Area Kerja -->
+      <xpath expr="//field[@name='area_kerja']" position="after" groups="base.group_hr_user">
+        <field name="nrp" readonly="1"/>
+      </xpath>
+
+      <!-- Ubah label Job Position -->
+      <xpath expr="//field[@name='job_id']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="string">Jabatan</attribute>
+      </xpath>
+
+      <!-- Menyembunyikan field -->
+      <xpath expr="//field[@name='parent_id']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='company_id']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='coach_id']" position="attributes" groups="base.group_hr_user">
+       
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <!-- Sembunyikan tab bawaan odoo -->
+      <!-- <xpath expr="//page[@name='resume']" position="attributes" groups="base.group_hr_user">
+         
+          <attribute name="invisible">1</attribute>
+      </xpath> -->
+      <xpath expr="//page[@name='public']" position="attributes" groups="base.group_hr_user">
+         
+          <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//page[@name='personal_information']" position="attributes" groups="base.group_hr_user">
+         
+          <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//page[@name='hr_settings']" position="attributes" groups="base.group_hr_user">
+         
+          <attribute name="invisible">1</attribute>
+      </xpath>
+      
+
+     <xpath expr="//notebook" position="inside">
+          <page string="Identitas" name="identitas">
+              <group>
+                  <!-- Section: Identitas KTP -->
+                  <separator string="Identitas KTP" colspan="2"/>
+
+                  <group col="2">
+                      <field name="nama_ktp"/>
+                      <field name="nik"/>
+                  </group>
+                  <group col="1">
+                      <field name="alamat_ktp"/>
+                  </group>
+                  <group col="2">
+                      <field name="place_of_birth" string="Tempat Lahir"/>
+                      <field name="birthday" string="Tanggal Lahir"/>
+                  </group>
+                  <group col="2">
+                      <field name="blood_type"/>
+                      <field name="age" string="Usia" readonly="1"/>
+                  </group>
+
+                  <!-- Section: Identitas Kartu Keluarga -->
+                  <separator string="Identitas Kartu Keluarga" colspan="2"/>
+
+                  <group col="2">
+                      <field name="nik_kk"/>
+                      <field name="no_kk"/>
+                  </group>
+                  <group col="1">
+                      <field name="alamat_kk"/>
+                  </group>
+                  <group col="1">
+                      <field name="birthday_kk" string="Tanggal Lahir sesuai KK"/>
+                  </group>
+
+                  <!-- Section: Identitas Akta Kelahiran -->
+                  <separator string="Identitas Akta Kelahiran" colspan="2"/>
+
+                  <group col="2">
+                      <field name="no_akta"/>
+                      <field name="nama_akta"/>
+                  </group>
+                  <group col="1">
+                      <field name="birthday_akta" string="Tanggal Lahir sesuai Akta"/>
+                  </group>
+
+                  <!-- Tambahan Data Umum -->
+                  <separator string="Data Karyawan" colspan="2"/>
+                  <group col="2">
+                      <field name="religion"/>
+                      <field name="structural_position"/>
+                  </group>
+                  <group col="2">
+                      <field name="employment_type"/>
+                      <!-- <field name="employee_type" string="Jenis Pegawai"/> -->
+                  </group>
+                  <group col="2">
+                      <field name="section"/>
+                      <field name="golongan"/>
+                  </group>
+                  <group col="2">
+                      <field name="grade"/>
+                      <field name="employment_status"/>
+                  </group>
+
+                  <!-- Tambahan Data Pekerjaan -->
+                  <separator string="Data Pekerjaan" colspan="2"/>
+                  <group col="3">
+                      <field name="first_contract_date"/>
+                      <field name="termination_date"/>
+                      <field name="employment_method"/>
+                  </group>
+                  <group col="2">
+                      <field name="income_start"/>
+                      <field name="income_end"/>
+                  </group>
+                  <group col="2">
+                      <field name="employee_category"/>
+                      <field name="gender"/>
+                  </group>
+                  <group col="2">
+                      <field name="nationality"/>
+                      <field name="insurance_number"/>
+                  </group>
+                  <group col="2">
+                      <field name="group_component_code"/>
+                      <field name="access_level"/>
+                  </group>
+                  <group col="2">
+                      <field name="service_length" readonly="1"/>
+                      <field name="shirt_size"/>
+                  </group>
+                  <group col="1">
+                      <field name="appointment"/>
+                  </group>
+              </group>
+          </page>
+
+          <!-- Keluarga -->
+          <page string="Keluarga" name="keluarga">
+              <group>
+                  <group col="2">
+                      <field name="status_kawin"/>
+                      <field name="status_pajak"/>
+                  </group>
+                  <group col="2">
+                      <field name="tanggungan_pajak"/>
+                      <field name="jlh_anggota_keluarga"/>
+                  </group>
+                  <group col="2">
+                      <field name="nama_ibu_kandung"/>
+                      <field name="nama_ayah_kandung"/>
+                  </group>
+                  <group col="2">
+                      <field name="nama_suami_istri"/>
+                      <field name="nama_anak_kandung"/>
+                  </group>
+                  <group col="1">
+                      <field name="nama_mertua"/>
+                  </group>
+              </group>
+          </page>
+
+          <!-- BPJS -->
+          <page string="BPJS" name="bpjs">
+            <field name="bpjs_ids" nolabel="1">
+              <tree editable="bottom">
+                <field name="bpjs_type"/>
+                <field name="number"/>
+                <field name="registration_number"/>
+                <field name="faskes_tk1"/>
+              </tree>
+              <form>
+                <group col="2">
+                  <field name="bpjs_type"/>
+                  <field name="number"/>
+                  <field name="nik"/>
+                </group>
+                <group col="2">
+                  <field name="registration_number"/>
+                  <field name="faskes_tk1"/>
+                </group>
+              </form>
+            </field>
+          </page>
+
+          <!-- Pendidikan -->
+          <page string="Riwayat Pendidikan" name="pendidikan">
+            <field name="education_ids" context="{'default_employee_id': active_id}">
+              <tree editable="bottom">
+                <field name="certificate"/>
+                <field name="study_school"/>
+                <field name="faculty"/>
+                <field name="major"/>
+                <field name="year_start"/>
+                <field name="year_end"/>
+              </tree>
+            </field>
+          </page>
+
+          <!-- Payroll -->
+          <page string="Payroll" name="payroll">
+            <separator string="Data NPWP" colspan="2"/>
+            <group >
+                <field name="npwp" colspan="2"/>
+            </group>
+
+            <separator string="Data Payroll" colspan="2"/>
+            <field name="payroll_ids" nolabel="1" context="{'default_employee_id': active_id}">
+                <tree editable="bottom">
+                    <field name="bank_name"/>
+                    <field name="bank_account"/>
+                    <field name="bank_branch"/>
+                    <field name="account_holder"/>
+                </tree>
+                <form>
+                    <group col="2">
+                        <field name="bank_name"/>
+                        <field name="bank_branch"/>
+                        <field name="bank_account"/>
+                        <field name="account_holder"/>
+                    </group>
+                </form>
+            </field>
+          </page>
+      </xpath>
+
+      <xpath expr="//field[@name='place_of_birth']" position="attributes">
+        <attribute name="string">Tempat Lahir</attribute>
+      </xpath>
+      <xpath expr="//field[@name='birthday']" position="attributes">
+        <attribute name="string">Tanggal Lahir</attribute>
+      </xpath>
+      <xpath expr="//field[@name='age']" position="attributes">
+        <attribute name="string">Usia</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="view_employee_form_inherit_hide_resume" model="ir.ui.view">
+    <field name="name">hr.employee.form.inherit.hide.resume</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//page[@name='skills_resume']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+    </field>
+  </record>
+
+  <!-- Tree view (daftar pendidikan) -->
+  <record id="view_hr_employee_education_tree" model="ir.ui.view">
+    <field name="name">hr.employee.education.tree</field>
+    <field name="model">hr.employee.education</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="certificate"/>
+        <field name="study_school"/>
+        <field name="faculty"/>
+        <field name="major"/>
+        <!-- <field name="year_start"/>
+        <field name="year_end"/> -->
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form view (detail pendidikan) -->
+  <record id="view_hr_employee_education_form" model="ir.ui.view">
+    <field name="name">hr.employee.education.form</field>
+    <field name="model">hr.employee.education</field>
+    <field name="arch" type="xml">
+      <form>
+        <group col="2">
+          <field name="certificate"/>
+          <field name="study_school"/>
+          <field name="faculty"/>
+          <field name="major"/>
+          <field name="year_start"/>
+          <field name="year_end"/>
+          <field name="ijazah_number"/>
+        </group>
+      </form>
+    </field>
+  </record>
+</odoo>

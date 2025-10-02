@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- View khusus untuk user biasa -->
+  <record id="view_employee_form_public" model="ir.ui.view">
+    <field name="name">hr.employee.form.public</field>
+    <field name="model">hr.employee.public</field>
+    <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+    <field name="priority">20</field>
+    <field name="arch" type="xml">
+
+          <!-- Ubah label Work Phone -->
+      <xpath expr="//field[@name='work_phone']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="string">No. WA</attribute>
+      </xpath>
+
+      <!-- Ubah label Mobile -->
+      <xpath expr="//field[@name='mobile_phone']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="string">No. Telepon (2)</attribute>
+      </xpath>
+
+      <!-- Ubah label Work Email -->
+      <xpath expr="//field[@name='work_email']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="string">Email</attribute>
+      </xpath>
+
+      <!-- Ubah label Department -->
+      <xpath expr="//field[@name='department_id']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="string">Unit Kerja</attribute>
+      </xpath>
+
+      <!-- Tambah Area Kerja setelah Unit Kerja -->
+      <xpath expr="//field[@name='department_id']" position="after" groups="base.group_user">
+        <field name="area_kerja" readonly="1"/>
+      </xpath>
+
+      <!-- Tambah NRP setelah Area Kerja -->
+      <xpath expr="//field[@name='area_kerja']" position="after" groups="base.group_user">
+        <field name="nrp" readonly="1"/>
+      </xpath>
+
+      <!-- Ubah label Job Position -->
+      <xpath expr="//field[@name='job_id']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="string">Jabatan</attribute>
+      </xpath>
+
+      <!-- Menyembunyikan field -->
+      <xpath expr="//field[@name='parent_id']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='company_id']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='coach_id']" position="attributes" groups="base.group_user">
+        <attribute name="readonly">1</attribute>
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <xpath expr="//page[@name='public']" position="attributes" groups="base.group_user">
+          <attribute name="readonly">1</attribute>
+          <attribute name="invisible">1</attribute>
+      </xpath>
+      <xpath expr="//page[@name='skills_resume']" position="attributes" groups="base.group_user">
+          <attribute name="readonly">1</attribute>
+          <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <!-- Tambahkan tab identitas khusus readonly -->
+      <xpath expr="//notebook" position="inside" groups="base.group_user">
+        <page string="Identitas" name="identitas">
+            <group>
+                <!-- Section: Identitas KTP -->
+                <separator string="Identitas KTP" colspan="2"/>
+
+                <group col="2">
+                    <field readonly="1" name="nama_ktp"/>
+                    <field readonly="1" name="nik"/>
+                </group>
+                <group col="1">
+                    <field readonly="1" name="alamat_ktp"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="place_of_birth" string="Tempat Lahir"/>
+                    <field readonly="1" name="birthday" string="Tanggal Lahir"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="blood_type"/>
+                    <field name="age" string="Usia" readonly="1"/>
+                </group>
+
+                <!-- Section: Identitas Kartu Keluarga -->
+                <separator string="Identitas Kartu Keluarga" colspan="2"/>
+
+                <group col="2">
+                    <field readonly="1" name="nik_kk"/>
+                    <field readonly="1" name="no_kk"/>
+                </group>
+                <group col="1">
+                    <field readonly="1" name="alamat_kk"/>
+                </group>
+                <group col="1">
+                    <field readonly="1" name="birthday_kk" string="Tanggal Lahir sesuai KK"/>
+                </group>
+
+                <!-- Section: Identitas Akta Kelahiran -->
+                <separator string="Identitas Akta Kelahiran" colspan="2"/>
+
+                <group col="2">
+                    <field readonly="1" name="no_akta"/>
+                    <field readonly="1" name="nama_akta"/>
+                </group>
+                <group col="1">
+                    <field readonly="1" name="birthday_akta" string="Tanggal Lahir sesuai Akta"/>
+                </group>
+
+                <!-- Tambahan Data Umum -->
+                <separator string="Data Karyawan" colspan="2"/>
+                <group col="2">
+                    <field readonly="1" name="religion"/>
+                    <field readonly="1" name="structural_position"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="employment_type"/>
+                    <!-- <field readonly="1" name="employee_type" string="Jenis Pegawai"/> -->
+                </group>
+                <group col="2">
+                    <field readonly="1" name="section"/>
+                    <field readonly="1" name="golongan"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="grade"/>
+                    <field readonly="1" name="employment_status"/>
+                </group>
+
+                <!-- Tambahan Data Pekerjaan -->
+                <separator string="Data Pekerjaan" colspan="2"/>
+                <group col="3">
+                    <field readonly="1" name="first_contract_date"/>
+                    <field readonly="1" name="termination_date"/>
+                    <field readonly="1" name="employment_method"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="income_start"/>
+                    <field readonly="1" name="income_end"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="employee_category"/>
+                    <field readonly="1" name="gender"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="nationality"/>
+                    <field readonly="1" name="insurance_number"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="group_component_code"/>
+                    <field readonly="1" name="access_level"/>
+                </group>
+                <group col="2">
+                    <field name="service_length" readonly="1"/>
+                    <field readonly="1" name="shirt_size"/>
+                </group>
+                <group col="1">
+                    <field readonly="1" name="appointment"/>
+                </group>
+            </group>
+        </page>
+
+        <!-- Keluarga -->
+        <page string="Keluarga" name="keluarga">
+            <group>
+                <group col="2">
+                    <field readonly="1" name="status_kawin"/>
+                    <field readonly="1" name="status_pajak"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="tanggungan_pajak"/>
+                    <field readonly="1" name="jlh_anggota_keluarga"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="nama_ibu_kandung"/>
+                    <field readonly="1" name="nama_ayah_kandung"/>
+                </group>
+                <group col="2">
+                    <field readonly="1" name="nama_suami_istri"/>
+                    <field readonly="1" name="nama_anak_kandung"/>
+                </group>
+                <group col="1">
+                    <field name="nama_mertua"/>
+                </group>
+            </group>
+        </page>
+
+        <page string="BPJS" name="bpjs">
+          <field name="bpjs_ids" nolabel="1" readonly="1">
+            <tree>
+              <field name="bpjs_type"/>
+              <field name="number"/>
+              <field name="registration_number"/>
+              <field name="faskes_tk1"/>
+            </tree>
+          </field>
+        </page>
+
+        <page string="Riwayat Pendidikan" name="pendidikan">
+          <field name="education_ids" readonly="1">
+            <tree>
+              <field name="certificate"/>
+              <field name="study_school"/>
+              <field name="faculty"/>
+              <field name="major"/>
+              <field name="year_start"/>
+              <field name="year_end"/>
+            </tree>
+          </field>
+        </page>
+
+        <page string="Payroll" name="payroll">
+          <field name="npwp" readonly="1"/>
+          <field name="payroll_ids" nolabel="1" readonly="1">
+            <tree>
+              <field name="bank_name"/>
+              <field name="bank_account"/>
+              <field name="bank_branch"/>
+              <field name="account_holder"/>
+            </tree>
+          </field>
+        </page>
+      </xpath>
+
+
+        <xpath expr="//field[@name='place_of_birth']" position="attributes" groups="base.group_user">
+          <attribute name="readonly">1</attribute>
+            <attribute name="string">Tempat Lahir</attribute>
+        </xpath>
+        <xpath expr="//field[@name='birthday']" position="attributes" groups="base.group_user">
+          <attribute name="readonly">1</attribute>
+            <attribute name="string">Tanggal Lahir</attribute>
+        </xpath>
+        <xpath expr="//field[@name='age']" position="attributes" groups="base.group_user">
+          <attribute name="readonly">1</attribute>
+            <attribute name="string">Usia</attribute>
+        </xpath>
+    </field>
+  </record>
+</odoo>
