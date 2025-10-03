@@ -128,6 +128,7 @@
                 </group>
                 <group col="2">
                     <field readonly="1" name="employment_type"/>
+                    <field readonly="1" name="employee_category"/>
                     <!-- <field readonly="1" name="employee_type" string="Jenis Pegawai"/> -->
                 </group>
                 <group col="2">
@@ -151,22 +152,19 @@
                     <field readonly="1" name="income_end"/>
                 </group>
                 <group col="2">
-                    <field readonly="1" name="employee_category"/>
                     <field readonly="1" name="gender"/>
-                </group>
-                <group col="2">
                     <field readonly="1" name="nationality"/>
+                </group>
+                <group col="2">
                     <field readonly="1" name="insurance_number"/>
-                </group>
-                <group col="2">
                     <field readonly="1" name="group_component_code"/>
-                    <field readonly="1" name="access_level"/>
                 </group>
                 <group col="2">
+                    <field readonly="1" name="access_level"/>
                     <field name="service_length" readonly="1"/>
-                    <field readonly="1" name="shirt_size"/>
                 </group>
-                <group col="1">
+                <group col="2">
+                    <field readonly="1" name="shirt_size"/>
                     <field readonly="1" name="appointment"/>
                 </group>
             </group>

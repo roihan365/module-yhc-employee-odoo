@@ -32,12 +32,12 @@
 
       <!-- Tambah Area Kerja setelah Unit Kerja -->
       <xpath expr="//field[@name='department_id']" position="after" groups="base.group_hr_user">
-        <field name="area_kerja" readonly="1"/>
+        <field name="area_kerja"/>
       </xpath>
 
       <!-- Tambah NRP setelah Area Kerja -->
       <xpath expr="//field[@name='area_kerja']" position="after" groups="base.group_hr_user">
-        <field name="nrp" readonly="1"/>
+        <field name="nrp"/>
       </xpath>
 
       <!-- Ubah label Job Position -->
@@ -135,6 +135,7 @@
                   </group>
                   <group col="2">
                       <field name="employment_type"/>
+                      <field name="employee_category"/>
                       <!-- <field name="employee_type" string="Jenis Pegawai"/> -->
                   </group>
                   <group col="2">
@@ -158,22 +159,19 @@
                       <field name="income_end"/>
                   </group>
                   <group col="2">
-                      <field name="employee_category"/>
                       <field name="gender"/>
-                  </group>
-                  <group col="2">
                       <field name="nationality"/>
+                  </group>
+                  <group col="2">
                       <field name="insurance_number"/>
-                  </group>
-                  <group col="2">
                       <field name="group_component_code"/>
-                      <field name="access_level"/>
                   </group>
                   <group col="2">
+                      <field name="access_level"/>
                       <field name="service_length" readonly="1"/>
                       <field name="shirt_size"/>
                   </group>
-                  <group col="1">
+                  <group col="2">
                       <field name="appointment"/>
                   </group>
               </group>
