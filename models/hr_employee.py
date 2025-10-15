@@ -44,6 +44,7 @@ class HrEmployee(models.Model):
                 rec.age = 0
                 
     npwp = fields.Char(string="NPWP")
+    efin = fields.Char(string="EFIN")
     status_kawin = fields.Selection([
         ('kawin','Kawin'), ('lajang','Lajang'), ('cerai','Cerai')
     ], string="Status Perkawinan", store=True)
@@ -73,7 +74,8 @@ class HrEmployee(models.Model):
     nationality = fields.Char(string="Kewarganegaraan", store=True)
 
     # --- Status Pekerjaan ---
-    first_contract_date = fields.Date(string="Tanggal Mulai Kerja", store=True)
+    first_contract_date = fields.Date(string="Tanggal Kontrak Pertama", store=True)
+    tanggal_pengangkatan = fields.Date(string="Tanggal Pengangkatan", store=True)
     termination_date = fields.Date(string="Tanggal Berhenti", store=True)
     employment_status = fields.Selection([
         ('aktif', 'Aktif'),

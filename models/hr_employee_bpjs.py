@@ -15,3 +15,5 @@ class HrEmployeeBpjs(models.Model):
     nik = fields.Char(string="NIK sesuai KJP")
     registration_number = fields.Date(string="Tanggal Daftar")
     faskes_tk1 = fields.Char(string="Faskes TK I") 
+    bpjs_image = fields.Binary("BPJS Image")
+    bpjs_image_filename = fields.Char("Image Filename")

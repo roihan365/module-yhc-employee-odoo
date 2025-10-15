@@ -151,6 +151,7 @@
                   <separator string="Data Pekerjaan" colspan="2"/>
                   <group col="3">
                       <field name="first_contract_date"/>
+                      <field name="tanggal_pengangkatan"/>
                       <field name="termination_date"/>
                       <field name="employment_method"/>
                   </group>
@@ -210,16 +211,17 @@
                 <field name="number"/>
                 <field name="registration_number"/>
                 <field name="faskes_tk1"/>
+                 <field name="bpjs_image" widget="image" class="oe_avatar"/>
               </tree>
               <form>
                 <group col="2">
                   <field name="bpjs_type"/>
                   <field name="number"/>
-                  <field name="nik"/>
                 </group>
                 <group col="2">
                   <field name="registration_number"/>
                   <field name="faskes_tk1"/>
+                  <field name="bpjs_image" filename="bpjs_image_filename" widget="image" accept="image/*"/>
                 </group>
               </form>
             </field>
@@ -244,6 +246,7 @@
             <separator string="Data NPWP" colspan="2"/>
             <group >
                 <field name="npwp" colspan="2"/>
+                <field name="efin" colspan="2"/>
             </group>
 
             <separator string="Data Payroll" colspan="2"/>

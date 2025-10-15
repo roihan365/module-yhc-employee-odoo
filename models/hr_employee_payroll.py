@@ -10,4 +10,4 @@ class HrEmployeePayroll(models.Model):
     bank_account = fields.Char(string="No. Rekening")
     bank_branch = fields.Char(string="Cabang Bank")
     account_holder = fields.Char(string="Atas Nama Rekening")
-    
+    tanggal_payroll = fields.Date(string="Tanggal Masuk Payroll")
