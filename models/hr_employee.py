@@ -21,8 +21,8 @@ class HrEmployee(models.Model):
     no_kk = fields.Char(string="No. KK", store=True)    
     
     no_akta = fields.Char(string="No. Akta Lahir", store=True)
-    nama_akta = fields.Date(string="Tanggal Lahir", store=True)
-    birthday_akta = fields.Date(string="Tanggal Lahir", store=True)
+    nama_akta = fields.Date(string="Nama Sesuai Akta", store=True)
+    birthday_akta = fields.Date(string="Tanggal Lahir Sesuai Akta", store=True)
 
     age = fields.Integer(string="Usia", compute="_compute_age", store=True)
     
