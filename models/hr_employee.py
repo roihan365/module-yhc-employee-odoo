@@ -5,7 +5,7 @@ class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
     nrp = fields.Char(string="NRP", store=True)
-    area_kerja = fields.Char(string="Area Kerja", store=True)
+    area_kerja_id = fields.Many2one('hr.employee.area_kerja', string="Area Kerja")
     # tgl_mulai_kerja = fields.Date(string="Tanggal Mulai Kerja")
     blood_type = fields.Selection([
         ('a','A'), ('b','B'), ('o','O'), ('ab','AB')
@@ -44,6 +44,8 @@ class HrEmployee(models.Model):
                 rec.age = 0
                 
     npwp = fields.Char(string="NPWP")
+    npwp_registration_date = fields.Char(string="Tanggal Terdaftar")
+    npwp_address = fields.Char(string="Alamat NPWP")
     efin = fields.Char(string="EFIN")
     status_kawin = fields.Selection([
         ('kawin','Kawin'), ('lajang','Lajang'), ('cerai','Cerai')
@@ -69,8 +71,8 @@ class HrEmployee(models.Model):
     structural_position = fields.Char(string="Jabatan Struktural", store=True)
     employment_type = fields.Char(string="Jenis Kepegawaian", store=True)
     section = fields.Char(string="Section", store=True)
-    golongan = fields.Char(string="Golongan", store=True)
-    grade = fields.Char(string="Grade/Pangkat", store=True)
+    golongan_id = fields.Many2one('hr.employee.golongan', string="Golongan")
+    grade_id = fields.Many2one('hr.employee.grade', string="Grade/Pangkat")
     nationality = fields.Char(string="Kewarganegaraan", store=True)
 
     # --- Status Pekerjaan ---
@@ -91,13 +93,8 @@ class HrEmployee(models.Model):
     #     readonly=False,   
     #     store=True
     # )
-    employee_category = fields.Selection([
-        ('phl', 'PHL'),
-        ('spk', 'SPK'),
-        ('pkwt', 'PKWT'),
-        ('tetap', 'Tetap'),
-        ('magang', 'Magang'),
-    ], string="Jenis Pegawai", store=True)
+    employee_category_id = fields.Many2one('hr.employee.category', string="Jenis Pegawai")
+    employee_type_id = fields.Many2one('hr.employee.type', string="Tipe Pegawai")
     
     # --- Asuransi & Data Lain ---
     insurance_number = fields.Char(string="No. Peserta Asuransi", store=True)
@@ -108,6 +105,9 @@ class HrEmployee(models.Model):
         ('s','S'), ('m','M'), ('l','L'), ('xl','XL'), 
         ('xxl','XXL'), ('xxxl','XXXL')
     ], string="Ukuran Baju", store=True)
+    body_weight = fields.Float(string="Berat Badan (kg)", store=True)
+    body_height = fields.Float(string="Tinggi Badan (cm)", store=True)
+    pants_size = fields.Char(string="Ukuran Celana", store=True)
     appointment = fields.Char(string="Pengangkatan", store=True)
     
     # --- Compute Masa Kerja ---
@@ -127,3 +127,35 @@ class HrEmployee(models.Model):
                 )
             else:
                 rec.service_length = 0
+                
+
+class EmployeeGolongan(models.Model):
+    _name = 'hr.employee.golongan'
+    _description = 'Golongan Pegawai'
+
+    name = fields.Char(string='Golongan', required=True)
+
+class EmployeeGrade(models.Model):
+    _name = 'hr.employee.grade'
+    _description = 'Grade atau Pangkat Pegawai'
+
+    name = fields.Char(string='Grade/Pangkat', required=True)
+
+class EmployeeCategory(models.Model):
+    _name = 'hr.employee.category'
+    _description = 'Jenis Pegawai'
+
+    name = fields.Char(string='Jenis Pegawai', required=True)
+    color = fields.Integer(string='Color Index', default=0)
+
+class EmployeeType(models.Model):
+    _name = 'hr.employee.type'
+    _description = 'Tipe Pegawai'
+
+    name = fields.Char(string='Tipe Pegawai', required=True)
+    
+class EmployeeAreaKerja(models.Model):
+    _name = 'hr.employee.area_kerja'
+    _description = 'Area Kerja'
+
+    name = fields.Char(string='Area Kerja', required=True)

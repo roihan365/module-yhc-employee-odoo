@@ -3,10 +3,19 @@ access_hr_employee_bpjs_user_read,access.hr.employee.bpjs.user.read,model_hr_emp
 access_hr_employee_education_user_read,access.hr.employee.education.user.read,model_hr_employee_education,base.group_user,1,0,0,0
 access_hr_employee_payroll_user_read,access.hr.employee.payroll.user.read,model_hr_employee_payroll,base.group_user,1,0,0,0
 access_hr_employee_user_read,access.hr.employee.user.read,model_hr_employee,base.group_user,1,0,0,0
+access_hr_employee_area_kerja_read,access.hr.employee.area_kerja.read,model_hr_employee_area_kerja,base.group_user,1,0,0,0
+access_hr_employee_employee_type_read,access.hr.employee.type.read,model_hr_employee_type,base.group_user,1,0,0,0
+access_hr_employee_employee_category_read,access.hr.employee.category.read,model_hr_employee_category,base.group_user,1,0,0,0
+access_hr_employee_employee_grade_read,access.hr.employee.grade.read,model_hr_employee_grade,base.group_user,1,0,0,0
+access_hr_employee_employee_golongan_read,access.hr.employee.golongan.read,model_hr_employee_golongan,base.group_user,1,0,0,0
 
 access_hr_employee_bpjs_admin,access.hr.employee.bpjs.admin,model_hr_employee_bpjs,base.group_system,1,1,1,1
 access_hr_employee_education_admin,access.hr.employee.education.admin,model_hr_employee_education,base.group_system,1,1,1,1
 access_hr_employee_payroll_admin,access.hr.employee.payroll.admin,model_hr_employee_payroll,base.group_system,1,1,1,1
-access_hr_employee_admin,access.hr.employee.admin,model_hr_employee,base.group_system,1,1,1,1
+access_hr_employee_area_kerja.admin,access.hr.employee.area_kerja.admin,model_hr_employee_area_kerja,base.group_system,1,1,1,1
+access_hr_employee_type_admin,access.hr.employee.type.admin,model_hr_employee_type,base.group_system,1,1,1,1
+access_hr_employee_category_admin,access.hr.employee.category.admin,model_hr_employee_category,base.group_system,1,1,1,1
+access_hr_employee_grade_admin,access.hr.employee.grade.admin,model_hr_employee_grade,base.group_system,1,1,1,1
+access_hr_employee_golongan_admin,access.hr.employee.golongan.admin,model_hr_employee_golongan,base.group_system,1,1,1,1
 
 access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee,base.group_user,1,0,0,0

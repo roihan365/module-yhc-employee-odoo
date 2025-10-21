@@ -5,7 +5,7 @@ class HrEmployeePublic(models.Model):
 
     # --- Data Custom (related dari hr.employee) ---
     nrp = fields.Char(related="employee_id.nrp", readonly=True)
-    area_kerja = fields.Char(related="employee_id.area_kerja", readonly=True)
+    area_kerja_id = fields.Many2one('employee_id.area_kerja_id', readonly=True)
     blood_type = fields.Selection(
         related="employee_id.blood_type",
         readonly=True
@@ -44,8 +44,8 @@ class HrEmployeePublic(models.Model):
     structural_position = fields.Char(related="employee_id.structural_position", readonly=True)
     employment_type = fields.Char(related="employee_id.employment_type", readonly=True)
     section = fields.Char(related="employee_id.section", readonly=True)
-    golongan = fields.Char(related="employee_id.golongan", readonly=True)
-    grade = fields.Char(related="employee_id.grade", readonly=True)
+    golongan_id = fields.Many2one('employee_id.area_kerja_id.golongan', readonly=True)
+    grade_id = fields.Many2one('employee_id.area_kerja_id.grade', readonly=True)
     nationality = fields.Char(related="employee_id.nationality", readonly=True)
 
     # --- Status Pekerjaan ---
@@ -55,7 +55,9 @@ class HrEmployeePublic(models.Model):
     income_start = fields.Date(related="employee_id.income_start", readonly=True)
     income_end = fields.Date(related="employee_id.income_end", readonly=True)
     employment_method = fields.Char(related="employee_id.employment_method", readonly=True)
-    employee_category = fields.Selection(related="employee_id.employee_category", readonly=True)
+    # employee_category = fields.Selection(related="employee_id.employee_category", readonly=True)
+    employee_category_id = fields.Many2one('employee_id.area_kerja_id.category', readonly=True)
+    employee_type_id = fields.Many2one('employee_id.area_kerja_id.type', readonly=True)
 
     # --- Asuransi & Data Lain ---
     insurance_number = fields.Char(related="employee_id.insurance_number", readonly=True)
@@ -63,6 +65,10 @@ class HrEmployeePublic(models.Model):
     access_level = fields.Char(related="employee_id.access_level", readonly=True)
     service_length = fields.Integer(related="employee_id.service_length", readonly=True)
     shirt_size = fields.Selection(related="employee_id.shirt_size", readonly=True)
+    body_weight = fields.Float(string="Berat Badan (kg)", readonly=True)
+    body_height = fields.Float(string="Tinggi Badan (cm)", readonly=True)
+    pants_size = fields.Char(string="Ukuran Celana", readonly=True)
+    appointment = fields.Char(string="Pengangkatan", readonly=True)
     appointment = fields.Char(related="employee_id.appointment", readonly=True)
 
     # --- Relasi One2many ---

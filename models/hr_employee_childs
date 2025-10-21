@@ -1,0 +1,19 @@
+from odoo import models, fields
+
+class HrEmployeeChild(models.Model):
+    _name = 'hr.employee.child'
+    _description = 'Data Anak Kandung'
+
+    name = fields.Char(string='Nama Anak', required=True)
+    birth_date = fields.Date(string='Tanggal Lahir')
+    gender = fields.Selection([
+        ('male', 'Laki-laki'),
+        ('female', 'Perempuan')
+    ], string='Jenis Kelamin')
+
+    employee_id = fields.Many2one(
+        'hr.employee',
+        string='Karyawan',
+        ondelete='cascade',
+        required=True
+    )

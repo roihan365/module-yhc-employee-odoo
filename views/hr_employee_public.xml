@@ -34,11 +34,11 @@
 
       <!-- Tambah Area Kerja setelah Unit Kerja -->
       <xpath expr="//field[@name='department_id']" position="after" groups="base.group_user">
-        <field name="area_kerja" readonly="1"/>
+        <field name="area_kerja_id" readonly="1"/>
       </xpath>
 
       <!-- Tambah NRP setelah Area Kerja -->
-      <xpath expr="//field[@name='area_kerja']" position="after" groups="base.group_user">
+      <xpath expr="//field[@name='area_kerja_id']" position="after" groups="base.group_user">
         <field name="nrp" readonly="1"/>
       </xpath>
 
@@ -128,15 +128,16 @@
                 </group>
                 <group col="2">
                     <field readonly="1" name="employment_type"/>
-                    <field readonly="1" name="employee_category"/>
+                    <field readonly="1" name="employee_type_id"/>
+                    <field readonly="1" name="employee_category_id"/>
                     <!-- <field readonly="1" name="employee_type" string="Jenis Pegawai"/> -->
                 </group>
                 <group col="2">
                     <field readonly="1" name="section"/>
-                    <field readonly="1" name="golongan"/>
+                    <field readonly="1" name="golongan_id"/>
                 </group>
                 <group col="2">
-                    <field readonly="1" name="grade"/>
+                    <field readonly="1" name="grade_id"/>
                     <field readonly="1" name="employment_status"/>
                 </group>
 
@@ -164,9 +165,14 @@
                     <field name="service_length" readonly="1"/>
                 </group>
                 <group col="2">
-                    <field readonly="1" name="shirt_size"/>
                     <field readonly="1" name="appointment"/>
                 </group>
+                  <group col="2">
+                      <field name="shirt_size"/>
+                      <field name="pants_size"/>
+                      <field name="body_weight"/>
+                      <field name="body_height"/>
+                  </group>
             </group>
         </page>
 

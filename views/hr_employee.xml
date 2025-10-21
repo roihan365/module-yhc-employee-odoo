@@ -32,11 +32,11 @@
 
       <!-- Tambah Area Kerja setelah Unit Kerja -->
       <xpath expr="//field[@name='department_id']" position="after" groups="base.group_hr_user">
-        <field name="area_kerja"/>
+        <field name="area_kerja_id"/>
       </xpath>
 
       <!-- Tambah NRP setelah Area Kerja -->
-      <xpath expr="//field[@name='area_kerja']" position="after" groups="base.group_hr_user">
+      <xpath expr="//field[@name='area_kerja_id']" position="after" groups="base.group_hr_user">
         <field name="nrp"/>
       </xpath>
 
@@ -135,15 +135,16 @@
                   </group>
                   <group col="2">
                       <field name="employment_type"/>
-                      <field name="employee_category"/>
+                      <field name="employee_type_id"/>
+                      <field name="employee_category_id"/>
                       <!-- <field name="employee_type" string="Jenis Pegawai"/> -->
                   </group>
                   <group col="2">
                       <field name="section"/>
-                      <field name="golongan"/>
+                      <field name="golongan_id"/>
                   </group>
                   <group col="2">
-                      <field name="grade"/>
+                      <field name="grade_id"/>
                       <field name="employment_status"/>
                   </group>
 
@@ -170,10 +171,15 @@
                   <group col="2">
                       <field name="access_level"/>
                       <field name="service_length" readonly="1"/>
-                      <field name="shirt_size"/>
                   </group>
                   <group col="2">
                       <field name="appointment"/>
+                  </group>
+                  <group col="2">
+                      <field name="shirt_size"/>
+                      <field name="pants_size"/>
+                      <field name="body_weight"/>
+                      <field name="body_height"/>
                   </group>
               </group>
           </page>
@@ -246,6 +252,8 @@
             <separator string="Data NPWP" colspan="2"/>
             <group >
                 <field name="npwp" colspan="2"/>
+                <field name="npwp_registration_date" colspan="2"/>
+                <field name="npwp_address" colspan="2"/>
                 <field name="efin" colspan="2"/>
             </group>
 
