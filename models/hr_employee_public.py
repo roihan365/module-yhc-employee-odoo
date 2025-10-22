@@ -36,7 +36,11 @@ class HrEmployeePublic(models.Model):
     nama_ibu_kandung = fields.Char(related="employee_id.nama_ibu_kandung", readonly=True)
     nama_ayah_kandung = fields.Char(related="employee_id.nama_ayah_kandung", readonly=True)
     nama_mertua = fields.Char(related="employee_id.nama_mertua", readonly=True)
-    nama_anak_kandung = fields.Char(related="employee_id.nama_anak_kandung", readonly=True)
+    family_child_ids = fields.One2many(
+        related="employee_id.family_child_ids",
+        readonly=True,
+        string="Anak Kandung"
+    )
     nama_suami_istri = fields.Char(related="employee_id.nama_suami_istri", readonly=True)
 
     # --- Data Umum ---
@@ -58,6 +62,9 @@ class HrEmployeePublic(models.Model):
     # employee_category = fields.Selection(related="employee_id.employee_category", readonly=True)
     employee_category_id = fields.Many2one('employee_id.area_kerja_id.category', readonly=True)
     employee_type_id = fields.Many2one('employee_id.area_kerja_id.type', readonly=True)
+    kota_asal = fields.Char(related='employee_id.kota_asal', string='Kota Asal', readonly=True)
+    provinsi_asal = fields.Many2one(related='employee_id.provinsi_asal', string='Provinsi Asal', readonly=True)
+
 
     # --- Asuransi & Data Lain ---
     insurance_number = fields.Char(related="employee_id.insurance_number", readonly=True)

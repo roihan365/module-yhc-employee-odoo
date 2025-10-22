@@ -8,6 +8,8 @@ access_hr_employee_employee_type_read,access.hr.employee.type.read,model_hr_empl
 access_hr_employee_employee_category_read,access.hr.employee.category.read,model_hr_employee_category,base.group_user,1,0,0,0
 access_hr_employee_employee_grade_read,access.hr.employee.grade.read,model_hr_employee_grade,base.group_user,1,0,0,0
 access_hr_employee_employee_golongan_read,access.hr.employee.golongan.read,model_hr_employee_golongan,base.group_user,1,0,0,0
+access_yhc_employee_child_user,access.yhc.employee.child.user,model_yhc_employee_child,base.group_user,1,1,1,1
+
 
 access_hr_employee_bpjs_admin,access.hr.employee.bpjs.admin,model_hr_employee_bpjs,base.group_system,1,1,1,1
 access_hr_employee_education_admin,access.hr.employee.education.admin,model_hr_employee_education,base.group_system,1,1,1,1
@@ -17,5 +19,7 @@ access_hr_employee_type_admin,access.hr.employee.type.admin,model_hr_employee_ty
 access_hr_employee_category_admin,access.hr.employee.category.admin,model_hr_employee_category,base.group_system,1,1,1,1
 access_hr_employee_grade_admin,access.hr.employee.grade.admin,model_hr_employee_grade,base.group_system,1,1,1,1
 access_hr_employee_golongan_admin,access.hr.employee.golongan.admin,model_hr_employee_golongan,base.group_system,1,1,1,1
+access_yhc_employee_child_admin,access.yhc.employee.child.admin,model_yhc_employee_child,base.group_system,1,1,1,1
+
 
 access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee,base.group_user,1,0,0,0

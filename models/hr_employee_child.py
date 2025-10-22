@@ -1,7 +1,7 @@
 from odoo import models, fields
 
 class HrEmployeeChild(models.Model):
-    _name = 'hr.employee.child'
+    _name = 'yhc.employee.child'
     _description = 'Data Anak Kandung'
 
     name = fields.Char(string='Nama Anak', required=True)
@@ -10,7 +10,7 @@ class HrEmployeeChild(models.Model):
         ('male', 'Laki-laki'),
         ('female', 'Perempuan')
     ], string='Jenis Kelamin')
-
+    
     employee_id = fields.Many2one(
         'hr.employee',
         string='Karyawan',

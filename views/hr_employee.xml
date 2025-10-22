@@ -6,6 +6,13 @@
     <field name="inherit_id" ref="hr.view_employee_form"/>
     <field name="arch" type="xml">
 
+      <xpath expr="//field[@name='name']" position="replace">
+          <div name="name" style="display: flex; align-items: center; gap: 8px;">
+              <field name="name" style="flex: 1 1 auto;" placeholder="Nama"/>
+              <field name="gelar" style="width: 120px;" placeholder="Gelar"/>
+          </div>
+      </xpath>
+
       <!-- Ubah label Work Phone -->
       <xpath expr="//field[@name='work_phone']" position="attributes" groups="base.group_hr_user">
        
@@ -150,9 +157,15 @@
 
                   <!-- Tambahan Data Pekerjaan -->
                   <separator string="Data Pekerjaan" colspan="2"/>
-                  <group col="3">
+                  <group col="2">
+                      <field name="kota_asal"/>
+                      <field name="provinsi_asal"/>
+                  </group>
+                  <group col="2">
                       <field name="first_contract_date"/>
                       <field name="tanggal_pengangkatan"/>
+                  </group>
+                  <group col="2">
                       <field name="termination_date"/>
                       <field name="employment_method"/>
                   </group>
@@ -181,6 +194,10 @@
                       <field name="body_weight"/>
                       <field name="body_height"/>
                   </group>
+                  <group col="2">
+                    <field name="passport_number" widget="number" placeholder="Nomor Passport"/>
+                    <field name="passport_expiry_date"/>
+                  </group>
               </group>
           </page>
 
@@ -199,13 +216,17 @@
                       <field name="nama_ibu_kandung"/>
                       <field name="nama_ayah_kandung"/>
                   </group>
-                  <group col="2">
-                      <field name="nama_suami_istri"/>
-                      <field name="nama_anak_kandung"/>
-                  </group>
                   <group col="1">
+                      <field name="nama_suami_istri"/>
                       <field name="nama_mertua"/>
                   </group>
+                  <field name="family_child_ids" colspan="2" nolabel="1">
+                      <tree editable="bottom">
+                          <field name="name"/>
+                          <field name="birth_date"/>
+                          <field name="gender"/>
+                      </tree>
+                  </field>
               </group>
           </page>
 

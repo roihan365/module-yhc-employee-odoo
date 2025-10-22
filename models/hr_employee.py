@@ -1,10 +1,12 @@
 from odoo import models, fields, api
 from datetime import date
+from odoo.exceptions import ValidationError
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
     nrp = fields.Char(string="NRP", store=True)
+    gelar = fields.Char(string="Gelar", help="Gelar akademik atau profesional")
     area_kerja_id = fields.Many2one('hr.employee.area_kerja', string="Area Kerja")
     # tgl_mulai_kerja = fields.Date(string="Tanggal Mulai Kerja")
     blood_type = fields.Selection([
@@ -60,7 +62,11 @@ class HrEmployee(models.Model):
     nama_ibu_kandung = fields.Char(string="Nama Ibu Kandung", store=True)
     nama_ayah_kandung = fields.Char(string="Nama Ayah Kandung", store=True)
     nama_mertua = fields.Char(string="Nama Mertua", store=True)
-    nama_anak_kandung = fields.Char(string="Nama Anak Kandung", store=True)
+    family_child_ids = fields.One2many(
+        'yhc.employee.child',
+        'employee_id',
+        string='Data Anak Kandung'
+    )
     nama_suami_istri = fields.Char(string="Nama Suami/Istri", store=True)
     
      # --- Data Umum ---
@@ -74,6 +80,8 @@ class HrEmployee(models.Model):
     golongan_id = fields.Many2one('hr.employee.golongan', string="Golongan")
     grade_id = fields.Many2one('hr.employee.grade', string="Grade/Pangkat")
     nationality = fields.Char(string="Kewarganegaraan", store=True)
+    passport_number = fields.Char(string="Nomor Passport", store=True)
+    passport_expiry_date = fields.Date(string="Tanggal Habis Berlaku Passpost", store=True)
 
     # --- Status Pekerjaan ---
     first_contract_date = fields.Date(string="Tanggal Kontrak Pertama", store=True)
@@ -95,6 +103,19 @@ class HrEmployee(models.Model):
     # )
     employee_category_id = fields.Many2one('hr.employee.category', string="Jenis Pegawai")
     employee_type_id = fields.Many2one('hr.employee.type', string="Tipe Pegawai")
+    kota_asal = fields.Char(
+            related='private_city',
+            string='Kota Asal',
+            store=True,
+            readonly=False
+        )
+    provinsi_asal = fields.Many2one(
+        related='private_state_id',
+        string='Provinsi Asal',
+        store=True,
+        readonly=False,
+        domain=[]
+    )
     
     # --- Asuransi & Data Lain ---
     insurance_number = fields.Char(string="No. Peserta Asuransi", store=True)
@@ -127,6 +148,12 @@ class HrEmployee(models.Model):
                 )
             else:
                 rec.service_length = 0
+                
+    @api.constrains('passport_number')
+    def _check_passport_number(self):
+        for rec in self:
+            if rec.passport_number and not rec.passport_number.isdigit():
+                raise ValidationError("Nomor Passport hanya boleh berisi angka saja!")
                 
 
 class EmployeeGolongan(models.Model):

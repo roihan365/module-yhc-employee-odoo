@@ -143,6 +143,10 @@
 
                 <!-- Tambahan Data Pekerjaan -->
                 <separator string="Data Pekerjaan" colspan="2"/>
+                <group col="2">
+                    <field name="kota_asal" string="Kota Asal" readonly="1" />
+                    <field name="provinsi_asal" string="Provinsi" readonly="1" />
+                </group>
                 <group col="3">
                     <field readonly="1" name="first_contract_date"/>
                     <field readonly="1" name="termination_date"/>
@@ -191,13 +195,22 @@
                     <field readonly="1" name="nama_ibu_kandung"/>
                     <field readonly="1" name="nama_ayah_kandung"/>
                 </group>
-                <group col="2">
-                    <field readonly="1" name="nama_suami_istri"/>
-                    <field readonly="1" name="nama_anak_kandung"/>
-                </group>
                 <group col="1">
                     <field name="nama_mertua"/>
                 </group>
+                <group col="2">
+                    <field name="nama_suami_istri"/>
+                </group>
+                <group string="Data Keluarga" col="2">
+                    <field name="nama_suami_istri"/>
+                </group>
+                <field name="family_child_ids" colspan="2" nolabel="1">
+                    <tree editable="bottom">
+                        <field name="name"/>
+                        <field name="birth_date"/>
+                        <field name="gender"/>
+                    </tree>
+                </field>
             </group>
         </page>
 
