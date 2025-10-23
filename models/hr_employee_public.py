@@ -5,7 +5,6 @@ class HrEmployeePublic(models.Model):
 
     # --- Data Custom (related dari hr.employee) ---
     nrp = fields.Char(related="employee_id.nrp", readonly=True)
-    area_kerja_id = fields.Many2one('employee_id.area_kerja_id', readonly=True)
     blood_type = fields.Selection(
         related="employee_id.blood_type",
         readonly=True
@@ -48,8 +47,8 @@ class HrEmployeePublic(models.Model):
     structural_position = fields.Char(related="employee_id.structural_position", readonly=True)
     employment_type = fields.Char(related="employee_id.employment_type", readonly=True)
     section = fields.Char(related="employee_id.section", readonly=True)
-    golongan_id = fields.Many2one('employee_id.area_kerja_id.golongan', readonly=True)
-    grade_id = fields.Many2one('employee_id.area_kerja_id.grade', readonly=True)
+    golongan_id = fields.Many2one('employee_id.golongan', readonly=True)
+    grade_id = fields.Many2one('employee_id.grade', readonly=True)
     nationality = fields.Char(related="employee_id.nationality", readonly=True)
 
     # --- Status Pekerjaan ---
@@ -60,11 +59,16 @@ class HrEmployeePublic(models.Model):
     income_end = fields.Date(related="employee_id.income_end", readonly=True)
     employment_method = fields.Char(related="employee_id.employment_method", readonly=True)
     # employee_category = fields.Selection(related="employee_id.employee_category", readonly=True)
-    employee_category_id = fields.Many2one('employee_id.area_kerja_id.category', readonly=True)
-    employee_type_id = fields.Many2one('employee_id.area_kerja_id.type', readonly=True)
+    employee_category_id = fields.Many2one('employee_id.category', readonly=True)
+    employee_type_id = fields.Many2one('employee_id.type', readonly=True)
     kota_asal = fields.Char(related='employee_id.kota_asal', string='Kota Asal', readonly=True)
     provinsi_asal = fields.Many2one(related='employee_id.provinsi_asal', string='Provinsi Asal', readonly=True)
 
+    reward_punishment_ids = fields.One2many(
+        'hr.employee.reward.punishment',
+        'employee_id',
+        string='Reward & Punishment'
+    )
 
     # --- Asuransi & Data Lain ---
     insurance_number = fields.Char(related="employee_id.insurance_number", readonly=True)

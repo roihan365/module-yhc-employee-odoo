@@ -34,11 +34,11 @@
 
       <!-- Tambah Area Kerja setelah Unit Kerja -->
       <xpath expr="//field[@name='department_id']" position="after" groups="base.group_user">
-        <field name="area_kerja_id" readonly="1"/>
+          <field name="work_location_id" string="Area Kerja" groups="base.group_hr_user"/>
       </xpath>
 
       <!-- Tambah NRP setelah Area Kerja -->
-      <xpath expr="//field[@name='area_kerja_id']" position="after" groups="base.group_user">
+      <xpath expr="//field[@name='work_location_id']" position="after" groups="base.group_user">
         <field name="nrp" readonly="1"/>
       </xpath>
 
@@ -247,6 +247,32 @@
               <field name="bank_branch"/>
               <field name="account_holder"/>
             </tree>
+          </field>
+        </page>
+
+        <page string="Reward &amp; Punishment" name="reward_punishment">
+          <field name="reward_punishment_ids" context="{'default_employee_id': active_id}">
+              <tree editable="bottom">
+                  <field name="type"/>
+                  <field name="reward_category" attrs="{'invisible': [('type', '=', 'punishment')]}"/>
+                  <field name="punishment_category" attrs="{'invisible': [('type', '=', 'reward')]}"/>
+                  <field name="date"/>
+                  <field name="supporting"/>
+              </tree>
+              <form string="Reward &amp; Punishment">
+                  <group>
+                      <group>
+                          <field name="type"/>
+                          <field name="reward_category" attrs="{'invisible': [('type', '=', 'punishment')]}"/>
+                          <field name="punishment_category" attrs="{'invisible': [('type', '=', 'reward')]}"/>
+                      </group>
+                      <group>
+                          <field name="date"/>
+                          <field name="supporting" filename="supporting_filename" widget="image" accept="image/*"/>
+                      </group>
+                          <field name="description"/>
+                  </group>
+              </form>
           </field>
         </page>
       </xpath>

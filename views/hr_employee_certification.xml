@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- INHERIT LIST VIEW -->
+    <record id="view_hr_resume_line_training_list" model="ir.ui.view">
+        <field name="name">hr.resume.line.training.list.inherit</field>
+        <field name="model">hr.resume.line</field>
+        <field name="inherit_id" ref="hr_skills_survey.hr_employee_certification_report_view_list"/>
+        <field name="arch" type="xml">
+            <!-- Ubah label dan field yang ditampilkan -->
+            <xpath expr="//tree" position="replace">
+                <tree string="Daftar Pelatihan" expand="1" default_group_by="employee_id">
+                    <field name="employee_id" widget="many2one_avatar_user"/>
+                    <field name="name" string="Nama Pelatihan"/>
+                    <field name="description" string="Tujuan Pelatihan" optional="show"/>
+                    <field name="survey_id" string="Jenis Pelatihan" optional="show"/>
+                    <field name="department_id" string="Bidang / Departemen" optional="show"/>
+                    <field name="date_start" string="Tanggal Pelaksanaan"/>
+                    <field name="date_end" string="Tanggal Selesai"/>
+                    <field name="training_location" string="Tempat Pelaksanaan" optional="show"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- INHERIT SEARCH VIEW -->
+    <record id="view_hr_resume_line_training_search" model="ir.ui.view">
+        <field name="name">hr.resume.line.training.search.inherit</field>
+        <field name="model">hr.resume.line</field>
+        <field name="inherit_id" ref="hr_skills_survey.hr_resume_line_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="replace">
+                <search string="Cari Pelatihan">
+                    <field name="employee_id" string="Karyawan"/>
+                    <field name="name" string="Nama Pelatihan"/>
+                    <field name="survey_id" string="Jenis Pelatihan"/>
+                    <field name="department_id" string="Departemen"/>
+                    <separator/>
+                    <filter string="Internal" name="internal" domain="[('survey_id.name','ilike','Internal')]"/>
+                    <filter string="Eksternal" name="external" domain="[('survey_id.name','ilike','Eksternal')]"/>
+                    <separator/>
+                    <filter string="Departemen" name="group_by_department" context="{'group_by': 'department_id'}"/>
+                    <filter string="Jenis Pelatihan" name="group_by_survey" context="{'group_by': 'survey_id'}"/>
+                </search>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ACTION BARU (masih pakai model lama) -->
+    <record id="action_hr_training_report" model="ir.actions.act_window">
+        <field name="name">Pelatihan Karyawan</field>
+        <field name="res_model">hr.resume.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_hr_resume_line_training_search"/>
+        <field name="view_id" ref="view_hr_resume_line_training_list"/>
+        <field name="domain">[('display_type','=','certification')]</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- MENU ITEM -->
+    <menuitem
+        id="menu_hr_training_report"
+        name="Pelatihan"
+        parent="hr.hr_menu_hr_reports"
+        action="action_hr_training_report"
+        sequence="30"
+        groups="hr.group_hr_user"/>
+</odoo>
