@@ -26,9 +26,15 @@
       </xpath>
 
       <!-- Ubah label Work Email -->
-      <xpath expr="//field[@name='work_email']" position="attributes" groups="base.group_hr_user">
-       
-        <attribute name="string">Email</attribute>
+      <xpath expr="//div[@class='oe_button_box']" position="inside">
+          <button name="action_open_emails"
+                  type="object"
+                  class="oe_stat_button"
+                  icon="fa-envelope">
+              <field name="work_emails"
+                      widget="statinfo"
+                      string="Email Tambahan"/>
+          </button>
       </xpath>
 
       <!-- Ubah label Department -->
@@ -325,36 +331,6 @@
                   </form>
               </field>
           </page>
-
-          <!-- <page string="Sertifikat" name="certification">
-            <group>
-                <group>
-                    <field name="employee_id" string="Karyawan"/>
-                    <field name="name" string="Nama Pelatihan"/>
-                    <field name="description" string="Tujuan Pelatihan"/>
-                    <field name="survey_id" string="Jenis Pelatihan"/>
-                    <field name="department_id" string="Bidang / Departemen"/>
-                </group>
-                <group>
-                    <field name="date_start" string="Tanggal Mulai"/>
-                    <field name="date_end" string="Tanggal Selesai"/>
-                    <field name="training_duration" string="Durasi (hari)"/>
-                    <field name="training_location" string="Tempat Pelaksanaan"/>
-                    <field name="training_method" string="Metode Pelatihan"/>
-                      <field name="display_type" required="1"/>
-                </group>
-            </group>
-
-            <group>
-                <field name="supporting_url" string="URL Bukti Pendukung" placeholder="https://contoh.com/sertifikat.pdf"/>
-            </group>
-
-            <notebook>
-                <page string="Catatan Tambahan">
-                    <field name="note" placeholder="Masukkan catatan tambahan tentang pelatihan..."/>
-                </page>
-            </notebook>
-          </page> -->
       </xpath>
 
       <xpath expr="//field[@name='place_of_birth']" position="attributes">
@@ -415,4 +391,32 @@
       </form>
     </field>
   </record>
+
+  <record id="view_hr_employee_email_tree" model="ir.ui.view">
+      <field name="name">hr.employee.email.tree</field>
+      <field name="model">hr.employee.email</field>
+      <field name="arch" type="xml">
+          <tree string="Email Tambahan" editable="bottom">
+              <field name="email"/>
+              <field name="employee_id"/>
+          </tree>
+      </field>
+  </record>
+
+  <!-- FORM VIEW -->
+  <record id="view_hr_employee_email_form" model="ir.ui.view">
+      <field name="name">hr.employee.email.form</field>
+      <field name="model">hr.employee.email</field>
+      <field name="arch" type="xml">
+          <form string="Email Tambahan">
+              <group>
+                  <field name="employee_id"/>
+                  <field name="email"/>
+              </group>
+          </form>
+      </field>
+  </record>
+
+  <!-- SEARCH VIEW -->
+ 
 </odoo>

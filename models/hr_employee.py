@@ -8,6 +8,23 @@ class HrEmployee(models.Model):
     nrp = fields.Char(string="NRP", store=True)
     gelar = fields.Char(string="Gelar", help="Gelar akademik atau profesional")
     area_kerja_id = fields.Many2one('hr.employee.area_kerja', string="Area Kerja")
+    work_emails = fields.One2many('hr.employee.email', 'employee_id', string="Emails")
+
+    def action_open_emails(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Email Tambahan',
+            'res_model': 'hr.employee.email',
+            'view_mode': 'tree,form',
+            'domain': [('employee_id', '=', self.id)],
+            'context': {'default_employee_id': self.id},
+            'views': [
+                (self.env.ref('yhc_employee.view_hr_employee_email_tree').id, 'tree'),
+                (self.env.ref('yhc_employee.view_hr_employee_email_form').id, 'form'),
+            ],
+        }
+        
     # tgl_mulai_kerja = fields.Date(string="Tanggal Mulai Kerja")
     blood_type = fields.Selection([
         ('a','A'), ('b','B'), ('o','O'), ('ab','AB')
@@ -192,3 +209,11 @@ class EmployeeAreaKerja(models.Model):
     _description = 'Area Kerja'
 
     name = fields.Char(string='Area Kerja', required=True)
+    
+class HrEmployeeEmail(models.Model):
+    _name = 'hr.employee.email'
+    _description = 'Employee Additional Email'
+    _rec_name = 'email'
+
+    employee_id = fields.Many2one('hr.employee', string="Employee", ondelete='cascade')
+    email = fields.Char(string="Email", required=True)
