@@ -7,6 +7,7 @@ class HrEmployee(models.Model):
 
     nrp = fields.Char(string="NRP", store=True)
     gelar = fields.Char(string="Gelar", help="Gelar akademik atau profesional")
+    area_kerja_id = fields.Many2one('hr.employee.area_kerja', string="Area Kerja")
     # tgl_mulai_kerja = fields.Date(string="Tanggal Mulai Kerja")
     blood_type = fields.Selection([
         ('a','A'), ('b','B'), ('o','O'), ('ab','AB')
@@ -185,3 +186,9 @@ class EmployeeType(models.Model):
     _description = 'Tipe Pegawai'
 
     name = fields.Char(string='Tipe Pegawai', required=True)
+    
+class EmployeeAreaKerja(models.Model):
+    _name = 'hr.employee.area_kerja'
+    _description = 'Area Kerja'
+
+    name = fields.Char(string='Area Kerja', required=True)

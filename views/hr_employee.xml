@@ -39,11 +39,11 @@
 
       <!-- Tambah Area Kerja setelah Unit Kerja -->
       <xpath expr="//field[@name='department_id']" position="after" groups="base.group_hr_user">
-          <field name="work_location_id" string="Area Kerja" />
+          <field name="area_kerja_id" />
       </xpath>
 
       <!-- Tambah NRP setelah Area Kerja -->
-      <xpath expr="//field[@name='work_location_id']" position="after" groups="base.group_hr_user">
+      <xpath expr="//field[@name='area_kerja_id']" position="after" groups="base.group_hr_user">
         <field name="nrp"/>
       </xpath>
 
@@ -370,7 +370,7 @@
     </field>
   </record>
 
-  <!-- <record id="view_employee_form_inherit_hide_resume" model="ir.ui.view">
+  <record id="view_employee_form_inherit_hide_resume" model="ir.ui.view">
     <field name="name">hr.employee.form.inherit.hide.resume</field>
     <field name="model">hr.employee</field>
     <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
@@ -379,7 +379,7 @@
             <attribute name="invisible">1</attribute>
         </xpath>
     </field>
-  </record> -->
+  </record>
 
   <!-- Tree view (daftar pendidikan) -->
   <record id="view_hr_employee_education_tree" model="ir.ui.view">

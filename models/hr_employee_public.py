@@ -9,6 +9,7 @@ class HrEmployeePublic(models.Model):
         related="employee_id.blood_type",
         readonly=True
     )
+    area_kerja_id = fields.Many2one('employee_id.area_kerja_id', readonly=True)
     nama_ktp = fields.Char(related="employee_id.nama_ktp", readonly=True)
     nik = fields.Char(related="employee_id.nik", readonly=True)
     alamat_ktp = fields.Text(related="employee_id.alamat_ktp", readonly=True)
