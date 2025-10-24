@@ -14,6 +14,7 @@
         "views/hr_employee.xml",
         "views/hr_employee_public.xml",
         "views/hr_employee_certification.xml",
+        'views/hr_training_certificate.xml',
     ],
     "installable": True,
     "application": False,

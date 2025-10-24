@@ -331,6 +331,19 @@
                   </form>
               </field>
           </page>
+
+          <page name="training_certificate" string="Sertifikat Pelatihan">
+              <field name="training_certificate_ids" context="{'default_employee_id': active_id}">
+                  <tree editable="bottom">
+                      <field name="name"/>
+                      <field name="jenis_pelatihan"/>
+                      <field name="tanggal_pelaksanaan"/>
+                      <field name="durasi"/>
+                      <field name="tempat"/>
+                      <field name="metode"/>
+                  </tree>
+              </field>
+          </page>
       </xpath>
 
       <xpath expr="//field[@name='place_of_birth']" position="attributes">

@@ -154,6 +154,10 @@ class HrEmployee(models.Model):
         string='Reward & Punishment'
     )
     
+    training_certificate_ids = fields.One2many(
+        'hr.training.certificate', 'employee_id', string='Sertifikat Pelatihan'
+    )
+    
     # --- Compute Masa Kerja ---
     @api.depends('birthday', 'termination_date')
     def _compute_service_length(self):

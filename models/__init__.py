@@ -6,3 +6,4 @@ from . import hr_employee_public
 from . import hr_employee_child
 from . import hr_resume_line
 from . import hr_employee_reward_punishment
+from . import hr_training_certificate

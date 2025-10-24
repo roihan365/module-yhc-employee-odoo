@@ -27,3 +27,4 @@ access_hr_employee_email.admin,access.hr.employee.email.admin,model_hr_employee_
 
 
 access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee,base.group_user,1,0,0,0
+access_hr_training_certificate_user,access_hr_training_certificate_user,model_hr_training_certificate,base.group_user,1,1,1,1

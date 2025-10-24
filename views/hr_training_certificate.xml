@@ -1,0 +1,39 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_hr_training_certificate_tree" model="ir.ui.view">
+        <field name="name">hr.training.certificate.tree</field>
+        <field name="model">hr.training.certificate</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="jenis_pelatihan"/>
+                <field name="department_id"/>
+                <field name="tanggal_pelaksanaan"/>
+                <field name="durasi"/>
+                <field name="tempat"/>
+                <field name="metode"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_hr_training_certificate_form" model="ir.ui.view">
+        <field name="name">hr.training.certificate.form</field>
+        <field name="model">hr.training.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Sertifikat Pelatihan">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="tujuan"/>
+                    <field name="jenis_pelatihan"/>
+                    <field name="department_id"/>
+                    <field name="tanggal_pelaksanaan"/>
+                    <field name="durasi"/>
+                    <field name="tempat"/>
+                    <field name="metode"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
