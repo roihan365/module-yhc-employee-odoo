@@ -10,13 +10,13 @@ class HrEmployeeRewardPunishment(models.Model):
     type = fields.Selection([
         ('reward', 'Reward'),
         ('punishment', 'Punishment'),
-    ], string='Tipe', required=True, default='reward')
+    ], string='Tipe', required=True, default='reward', store=True)
 
     reward_category = fields.Selection([
         ('gathering', 'Gathering'),
         ('program_sekolah', 'Program Sekolah'),
         ('program_yayasan', 'Program Yayasan'),
-    ], string='Kategori Reward')
+    ], string='Kategori Reward', store=True)
 
     punishment_category = fields.Selection([
         ('st1', 'Surat Teguran 1'),
@@ -25,10 +25,10 @@ class HrEmployeeRewardPunishment(models.Model):
         ('sp1', 'Surat Peringatan 1'),
         ('sp2', 'Surat Peringatan 2'),
         ('sp3', 'Surat Peringatan 3'),
-    ], string='Kategori Punishment')
+    ], string='Kategori Punishment', store=True)
 
-    date = fields.Date(string='Tanggal', default=fields.Date.context_today)
+    date = fields.Date(string='Tanggal', default=fields.Date.context_today, store=True)
 
     supporting = fields.Binary("Bukti Pendukung")
     supporting_filename = fields.Char("Bukti Filename")
-    description = fields.Char(string='Keterangan', required=True)
+    description = fields.Char(string='Keterangan')
