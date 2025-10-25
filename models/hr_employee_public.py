@@ -9,7 +9,7 @@ class HrEmployeePublic(models.Model):
         related="employee_id.blood_type",
         readonly=True
     )
-    area_kerja_id = fields.Many2one('employee_id.area_kerja_id', readonly=True)
+    area_kerja_id = fields.Many2one(related='employee_id.area_kerja_id', readonly=True)
     nama_ktp = fields.Char(related="employee_id.nama_ktp", readonly=True)
     nik = fields.Char(related="employee_id.nik", readonly=True)
     alamat_ktp = fields.Text(related="employee_id.alamat_ktp", readonly=True)
@@ -48,8 +48,8 @@ class HrEmployeePublic(models.Model):
     structural_position = fields.Char(related="employee_id.structural_position", readonly=True)
     employment_type = fields.Char(related="employee_id.employment_type", readonly=True)
     section = fields.Char(related="employee_id.section", readonly=True)
-    golongan_id = fields.Many2one('employee_id.golongan', readonly=True)
-    grade_id = fields.Many2one('employee_id.grade', readonly=True)
+    golongan_id = fields.Many2one(related='employee_id.golongan_id', readonly=True)
+    grade_id = fields.Many2one(related='employee_id.grade_id', readonly=True)
     nationality = fields.Char(related="employee_id.nationality", readonly=True)
 
     # --- Status Pekerjaan ---
@@ -60,8 +60,8 @@ class HrEmployeePublic(models.Model):
     income_end = fields.Date(related="employee_id.income_end", readonly=True)
     employment_method = fields.Char(related="employee_id.employment_method", readonly=True)
     # employee_category = fields.Selection(related="employee_id.employee_category", readonly=True)
-    employee_category_id = fields.Many2one('employee_id.category', readonly=True)
-    employee_type_id = fields.Many2one('employee_id.type', readonly=True)
+    employee_category_id = fields.Many2one(related='employee_id.employee_category_id', readonly=True)
+    employee_type_id = fields.Many2one(related='employee_id.employee_type_id', readonly=True)
     kota_asal = fields.Char(related='employee_id.kota_asal', string='Kota Asal', readonly=True)
     provinsi_asal = fields.Many2one(related='employee_id.provinsi_asal', string='Provinsi Asal', readonly=True)
 
@@ -77,10 +77,9 @@ class HrEmployeePublic(models.Model):
     access_level = fields.Char(related="employee_id.access_level", readonly=True)
     service_length = fields.Integer(related="employee_id.service_length", readonly=True)
     shirt_size = fields.Selection(related="employee_id.shirt_size", readonly=True)
-    body_weight = fields.Float(string="Berat Badan (kg)", readonly=True)
-    body_height = fields.Float(string="Tinggi Badan (cm)", readonly=True)
-    pants_size = fields.Char(string="Ukuran Celana", readonly=True)
-    appointment = fields.Char(string="Pengangkatan", readonly=True)
+    body_weight = fields.Float(related="employee_id.body_weight", readonly=True)
+    body_height = fields.Float(related="employee_id.body_height", readonly=True)
+    pants_size = fields.Char(related="employee_id.pants_size", readonly=True)
     appointment = fields.Char(related="employee_id.appointment", readonly=True)
 
     # --- Relasi One2many ---

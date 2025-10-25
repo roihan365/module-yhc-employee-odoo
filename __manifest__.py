@@ -9,8 +9,10 @@
         "hr_skills_survey",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/hr_area_groups.xml",
         "security/hr_employee_security.xml",
+        "security/hr_resume_rules.xml",
+        "security/ir.model.access.csv",
         "views/hr_employee.xml",
         "views/hr_employee_public.xml",
         "views/hr_employee_certification.xml",

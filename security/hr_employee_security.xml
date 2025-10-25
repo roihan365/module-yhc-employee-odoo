@@ -1,13 +1,92 @@
 <odoo>
-    <!-- Rule untuk semua user (selain HR & Admin) hanya bisa READ -->
-    <record id="hr_employee_readonly_rule" model="ir.rule">
-        <field name="name">Employee readonly for non-HR</field>
+    <record id="hr_employee_rule_hr_area" model="ir.rule">
+        <field name="name">HR Area: see employees in same area</field>
         <field name="model_id" ref="hr.model_hr_employee"/>
-        <field name="groups" eval="[(4, ref('base.group_user'))]"/> <!-- Semua user -->
+        <field name="domain_force">[
+            ('user_id','=',user.id),
+            ('area_kerja_id', '!=', False),
+            ('area_kerja_id', '=', user.employee_id.area_kerja_id.id)
+        ]</field>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_polhas')),
+            (4, ref('yhc_employee.group_hr_gibs')),
+            (4, ref('yhc_employee.group_hr_wls')),
+            (4, ref('yhc_employee.group_hr_annur')),
+            (4, ref('yhc_employee.group_hr_office8'))
+        ]"/>
+    </record>
+
+    <record id="hr_employee_rule_self" model="ir.rule">
+        <field name="name">Employee: can see own record only</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="hr_employee_rule_admin" model="ir.rule">
+        <field name="name">Admin: full access</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+
+    <record id="hr_employee_public_rule_admin" model="ir.rule">
+        <field name="name">Admin: full hr.employee.public</field>
+        <field name="model_id" ref="hr.model_hr_employee_public"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+
+    <!-- HR area boleh baca data pendukung yang sering direferensikan -->
+    <record id="rule_hr_related_models" model="ir.rule">
+        <field name="name">HR Area: can read related HR data</field>
+        <field name="model_id" ref="base.model_res_users"/>
         <field name="domain_force">[(1,'=',1)]</field>
-        <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_polhas')),
+            (4, ref('yhc_employee.group_hr_gibs')),
+            (4, ref('yhc_employee.group_hr_wls')),
+            (4, ref('yhc_employee.group_hr_annur')),
+            (4, ref('yhc_employee.group_hr_office8'))
+        ]"/>
+    </record>
+
+    <record id="rule_hr_department_read" model="ir.rule">
+        <field name="name">HR Area: read departments</field>
+        <field name="model_id" ref="hr.model_hr_department"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_polhas')),
+            (4, ref('yhc_employee.group_hr_gibs')),
+            (4, ref('yhc_employee.group_hr_wls')),
+            (4, ref('yhc_employee.group_hr_annur')),
+            (4, ref('yhc_employee.group_hr_office8'))
+        ]"/>
+    </record>
+
+    <record id="rule_hr_job_read" model="ir.rule">
+        <field name="name">HR Area: read jobs</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_polhas')),
+            (4, ref('yhc_employee.group_hr_gibs')),
+            (4, ref('yhc_employee.group_hr_wls')),
+            (4, ref('yhc_employee.group_hr_annur')),
+            (4, ref('yhc_employee.group_hr_office8'))
+        ]"/>
+    </record>
+
+    <record id="rule_hr_partner_read" model="ir.rule">
+        <field name="name">HR Area: read partners</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_polhas')),
+            (4, ref('yhc_employee.group_hr_gibs')),
+            (4, ref('yhc_employee.group_hr_wls')),
+            (4, ref('yhc_employee.group_hr_annur')),
+            (4, ref('yhc_employee.group_hr_office8'))
+        ]"/>
     </record>
 </odoo>

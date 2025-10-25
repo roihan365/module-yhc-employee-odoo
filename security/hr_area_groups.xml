@@ -1,0 +1,26 @@
+<odoo>
+    <record id="group_hr_polhas" model="res.groups">
+        <field name="name">HR Polhas</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="group_hr_gibs" model="res.groups">
+        <field name="name">HR GIBS</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="group_hr_wls" model="res.groups">
+        <field name="name">HR WLS</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="group_hr_annur" model="res.groups">
+        <field name="name">HR An Nur</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="group_hr_office8" model="res.groups">
+        <field name="name">HR Office 8</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+</odoo>
