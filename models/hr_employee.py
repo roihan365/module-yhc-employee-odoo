@@ -138,7 +138,7 @@ class HrEmployee(models.Model):
     insurance_number = fields.Char(string="No. Peserta Asuransi", store=True)
     group_component_code = fields.Char(string="Kode Group Komponen", store=True)
     access_level = fields.Char(string="Level Akses", store=True)
-    service_length = fields.Integer(string="Masa Kerja", compute="_compute_service_length", store=True)
+    service_length = fields.Char(string="Masa Kerja", compute="_compute_service_length", store=True)
     shirt_size = fields.Selection([
         ('s','S'), ('m','M'), ('l','L'), ('xl','XL'), 
         ('xxl','XXL'), ('xxxl','XXXL')
@@ -159,22 +159,44 @@ class HrEmployee(models.Model):
     )
     
     # --- Compute Masa Kerja ---
-    @api.depends('birthday', 'termination_date')
+    from datetime import date
+
+    @api.depends('first_contract_date', 'termination_date')
     def _compute_service_length(self):
         """
-        Hitung masa kerja (tahun) berdasarkan tanggal mulai kerja 
-        dan tanggal berhenti (jika ada).
+        Hitung masa kerja dalam format 'X tahun Y bulan' 
+        berdasarkan tanggal mulai kerja dan tanggal berhenti (jika ada).
         """
         today = date.today()
         for rec in self:
-            start = rec.first_contract_date or rec.create_date.date() if rec.create_date else None
+            start = rec.first_contract_date
             end = rec.termination_date or today
+
             if start:
-                rec.service_length = end.year - start.year - (
-                    (end.month, end.day) < (start.month, start.day)
-                )
+                # Hitung selisih tahun dan bulan
+                years = end.year - start.year
+                months = end.month - start.month
+
+                # Jika bulan akhir lebih kecil dari bulan mulai, kurangi 1 tahun
+                if months < 0 or (months == 0 and end.day < start.day):
+                    years -= 1
+                    months += 12
+
+                # Koreksi jika hari akhir belum lewat hari mulai
+                if end.day < start.day:
+                    months -= 1
+                    if months < 0:
+                        years -= 1
+                        months += 12
+
+                # Pastikan tidak negatif
+                years = max(years, 0)
+                months = max(months, 0)
+
+                # Format hasilnya (misal: "1 tahun 9 bulan")
+                rec.service_length = f"{years} tahun {months} bulan"
             else:
-                rec.service_length = 0
+                rec.service_length = "0 tahun 0 bulan"
                 
     @api.constrains('passport_number')
     def _check_passport_number(self):

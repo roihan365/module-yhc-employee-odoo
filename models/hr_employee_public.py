@@ -75,7 +75,7 @@ class HrEmployeePublic(models.Model):
     insurance_number = fields.Char(related="employee_id.insurance_number", readonly=True)
     group_component_code = fields.Char(related="employee_id.group_component_code", readonly=True)
     access_level = fields.Char(related="employee_id.access_level", readonly=True)
-    service_length = fields.Integer(related="employee_id.service_length", readonly=True)
+    service_length = fields.Char(related="employee_id.service_length", readonly=True)
     shirt_size = fields.Selection(related="employee_id.shirt_size", readonly=True)
     body_weight = fields.Float(related="employee_id.body_weight", readonly=True)
     body_height = fields.Float(related="employee_id.body_height", readonly=True)
