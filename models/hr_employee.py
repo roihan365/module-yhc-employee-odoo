@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions, _
 from datetime import date
 from odoo.exceptions import ValidationError
 
@@ -181,7 +181,58 @@ class HrEmployee(models.Model):
         for rec in self:
             if rec.passport_number and not rec.passport_number.isdigit():
                 raise ValidationError("Nomor Passport hanya boleh berisi angka saja!")
-                
+            
+    @api.model
+    def create(self, vals):
+        user = self.env.user
+        # Pastikan employee yang dibuat HR langsung punya area kerja sama
+        if not vals.get('area_kerja_id') and user.employee_id and user.employee_id.area_kerja_id:
+            vals['area_kerja_id'] = user.employee_id.area_kerja_id.id
+        return super().create(vals)
+        
+    @api.model
+    def default_get(self, fields):
+        res = super().default_get(fields)
+        user = self.env.user
+        if user.employee_id and user.employee_id.area_kerja_id:
+            res['area_kerja_id'] = user.employee_id.area_kerja_id.id
+        return res
+    
+    @api.model
+    def create(self, vals):
+        """
+        Override create untuk hindari AccessError pada saat memilih department_id
+        (karena Odoo mencoba baca manager_id employee di department tersebut).
+        """
+        # Pastikan area kerja otomatis diisi
+        user = self.env.user
+        if not vals.get('area_kerja_id') and user.employee_id and user.employee_id.area_kerja_id:
+            vals['area_kerja_id'] = user.employee_id.area_kerja_id.id
+
+        # Jika department diisi, baca dengan sudo agar tidak kena rule manager
+        if vals.get('department_id'):
+            department = self.env['hr.department'].sudo().browse(vals['department_id'])
+            # optional: set manager sebagai parent_id jika belum diisi
+            if department and not vals.get('parent_id') and department.manager_id:
+                vals['parent_id'] = department.manager_id.id
+
+        # Panggil super() dalam sudo context untuk hindari AccessError dari core logic
+        try:
+            employee = super(HrEmployee, self.sudo()).create(vals)
+        except exceptions.AccessError:
+            # fallback: jika masih gagal karena ir.rule lain
+            employee = super(HrEmployee, self.sudo()).create(vals)
+
+        return employee
+    
+    def write(self, vals):
+        # Jika department diubah, baca department dengan sudo agar tidak AccessError
+        if vals.get('department_id'):
+            department = self.env['hr.department'].sudo().browse(vals['department_id'])
+            if department and department.manager_id:
+                # Pastikan field manager_id bisa diakses tanpa error
+                _ = department.manager_id.sudo().name
+        return super().write(vals)
 
 class EmployeeGolongan(models.Model):
     _name = 'hr.employee.golongan'

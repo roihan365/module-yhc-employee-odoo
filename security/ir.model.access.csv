@@ -36,11 +36,11 @@ access_hr_employee_admin,access.hr.employee.admin,model_hr_employee,base.group_s
 access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee,base.group_user,1,0,0,0
 access_hr_training_certificate_user,access_hr_training_certificate_user,model_hr_training_certificate,base.group_user,1,1,1,1
 
-access_hr_employee_category_hr_polhas,access.hr.employee.category.hr.polhas,model_hr_employee_category,yhc_employee.group_hr_polhas,1,1,1,1
-access_hr_employee_category_hr_gibs,access.hr.employee.category.hr.gibs,model_hr_employee_category,yhc_employee.group_hr_gibs,1,1,1,1
-access_hr_employee_category_hr_wls,access.hr.employee.category.hr.wls,model_hr_employee_category,yhc_employee.group_hr_wls,1,1,1,1
-access_hr_employee_category_hr_annur,access.hr.employee.category.hr.annur,model_hr_employee_category,yhc_employee.group_hr_annur,1,1,1,1
-access_hr_employee_category_hr_office8,access.hr.employee.category.hr.office8,model_hr_employee_category,yhc_employee.group_hr_office8,1,1,1,1
+access_hr_employee_polhas,HR Polhas Access,hr.model_hr_employee,yhc_employee.group_hr_polhas,1,1,1,1
+access_hr_employee_gibs,HR GIBS Access,hr.model_hr_employee,yhc_employee.group_hr_gibs,1,1,1,1
+access_hr_employee_wls,HR WLS Access,hr.model_hr_employee,yhc_employee.group_hr_wls,1,1,1,1
+access_hr_employee_annur,HR An Nur Access,hr.model_hr_employee,yhc_employee.group_hr_annur,1,1,1,1
+access_hr_employee_office8,HR Office8 Access,hr.model_hr_employee,yhc_employee.group_hr_office8,1,1,1,1
 
 access_hr_leave_hr_polhas,access.hr.leave.hr.polhas,hr_holidays.model_hr_leave,yhc_employee.group_hr_polhas,1,1,1,1
 access_hr_leave_hr_gibs,access.hr.leave.hr.gibs,hr_holidays.model_hr_leave,yhc_employee.group_hr_gibs,1,1,1,1
