@@ -17,7 +17,7 @@
 
     <record id="hr_employee_rule_self" model="ir.rule">
         <field name="name">Employee: can see own record only</field>
-        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="model_id" ref="hr.model_hr_employee_public"/>
         <field name="domain_force">[('user_id', '=', user.id)]</field>
         <field name="groups" eval="[(4, ref('base.group_user'))]"/>
     </record>
@@ -88,4 +88,18 @@
             (4, ref('yhc_employee.group_hr_office8'))
         ]"/>
     </record>
+
+    <record id="hr_employee_rule_unit_area" model="ir.rule">
+        <field name="name">Unit: Head and Secretary Unit can see employees in the same unit</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[
+            ('department_id', '!=', False),
+            ('department_id', '=', user.employee_id.department_id.id)
+        ]</field>
+        <field name="groups" eval="[
+            (4, ref('yhc_employee.group_hr_head_unit')),
+            (4, ref('yhc_employee.group_hr_secretary_unit'))
+        ]"/>
+    </record>
+
 </odoo>

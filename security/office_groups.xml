@@ -1,0 +1,13 @@
+<odoo>
+    <record id="group_hr_head_unit" model="res.groups">
+        <field name="name">Kepala Unit</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <record id="group_hr_secretary_unit" model="res.groups">
+        <field name="name">Sekretaris Unit</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+</odoo>

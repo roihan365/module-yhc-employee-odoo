@@ -2,7 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hr_employee_bpjs_user_read,access.hr.employee.bpjs.user.read,model_hr_employee_bpjs,base.group_user,1,0,0,0
 access_hr_employee_education_user_read,access.hr.employee.education.user.read,model_hr_employee_education,base.group_user,1,0,0,0
 access_hr_employee_payroll_user_read,access.hr.employee.payroll.user.read,model_hr_employee_payroll,base.group_user,1,0,0,0
-access_hr_employee_user_read,access.hr.employee.user.read,model_hr_employee,base.group_user,1,0,0,0
 access_hr_employee_reward_punishment_read,access.hr.employee.reward.punishment.read,model_hr_employee_reward_punishment,base.group_user,1,0,0,0
 access_hr_employee_employee_type_read,access.hr.employee.type.read,model_hr_employee_type,base.group_user,1,0,0,0
 access_hr_employee_employee_category_read,access.hr.employee.category.read,model_hr_employee_category,base.group_user,1,0,0,0
@@ -24,16 +23,8 @@ access_yhc_employee_child_admin,access.yhc.employee.child.admin,model_yhc_employ
 access_hr_employee_area_kerja.admin,access.hr.employee.area_kerja.admin,model_hr_employee_area_kerja,base.group_system,1,1,1,1
 access_hr_employee_email.admin,access.hr.employee.email.admin,model_hr_employee_email,base.group_system,1,1,1,1
 
-
-access_hr_employee_hr_polhas,access.hr.employee.hr.polhas,model_hr_employee,yhc_employee.group_hr_polhas,1,1,1,1
-access_hr_employee_hr_gibs,access.hr.employee.hr.gibs,model_hr_employee,yhc_employee.group_hr_gibs,1,1,1,1
-access_hr_employee_hr_wls,access.hr.employee.hr.wls,model_hr_employee,yhc_employee.group_hr_wls,1,1,1,1
-access_hr_employee_hr_annur,access.hr.employee.hr.annur,model_hr_employee,yhc_employee.group_hr_annur,1,1,1,1
-access_hr_employee_hr_office8,access.hr.employee.hr.office8,model_hr_employee,yhc_employee.group_hr_office8,1,1,1,1
-
 access_hr_employee_admin,access.hr.employee.admin,model_hr_employee,base.group_system,1,1,1,1
-
-access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee,base.group_user,1,0,0,0
+access_hr_employee_public_user,access.hr.employee.public.user,model_hr_employee_public,base.group_user,1,0,0,0
 access_hr_training_certificate_user,access_hr_training_certificate_user,model_hr_training_certificate,base.group_user,1,1,1,1
 
 access_hr_employee_polhas,HR Polhas Access,hr.model_hr_employee,yhc_employee.group_hr_polhas,1,1,1,1
@@ -41,9 +32,13 @@ access_hr_employee_gibs,HR GIBS Access,hr.model_hr_employee,yhc_employee.group_h
 access_hr_employee_wls,HR WLS Access,hr.model_hr_employee,yhc_employee.group_hr_wls,1,1,1,1
 access_hr_employee_annur,HR An Nur Access,hr.model_hr_employee,yhc_employee.group_hr_annur,1,1,1,1
 access_hr_employee_office8,HR Office8 Access,hr.model_hr_employee,yhc_employee.group_hr_office8,1,1,1,1
+access_hr_employee_head_unit,Head Unit Access,hr.model_hr_employee,yhc_employee.group_hr_head_unit,1,1,1,0
+access_hr_employee_secretary_unit,Secretary Unit Access,hr.model_hr_employee,yhc_employee.group_hr_secretary_unit,1,1,1,0
 
 access_hr_leave_hr_polhas,access.hr.leave.hr.polhas,hr_holidays.model_hr_leave,yhc_employee.group_hr_polhas,1,1,1,1
 access_hr_leave_hr_gibs,access.hr.leave.hr.gibs,hr_holidays.model_hr_leave,yhc_employee.group_hr_gibs,1,1,1,1
 access_hr_leave_hr_wls,access.hr.leave.hr.wls,hr_holidays.model_hr_leave,yhc_employee.group_hr_wls,1,1,1,1
 access_hr_leave_hr_annur,access.hr.leave.hr.annur,hr_holidays.model_hr_leave,yhc_employee.group_hr_annur,1,1,1,1
 access_hr_leave_hr_office8,access.hr.leave.hr.office8,hr_holidays.model_hr_leave,yhc_employee.group_hr_office8,1,1,1,1
+access_hr_employee_head_unit,Head Unit Hr leave Access,hr_holidays.model_hr_leave,yhc_employee.group_hr_head_unit,1,1,1,0
+access_hr_employee_secretary_unit,Secretary Hr leave Unit Access,hr_holidays.model_hr_leave,yhc_employee.group_hr_secretary_unit,1,1,1,0
