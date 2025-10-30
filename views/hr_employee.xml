@@ -7,10 +7,10 @@
     <field name="arch" type="xml">
 
       <xpath expr="//field[@name='name']" position="replace">
-          <div name="name" style="display: flex; align-items: center; gap: 8px;">
-              <field name="name" style="flex: 1 1 auto;" placeholder="Nama"/>
-              <field name="gelar" style="width: 120px;" placeholder="Gelar"/>
-          </div>
+        <div name="name" style="display: flex; align-items: center; gap: 8px; margin-right: -100px;">
+            <field name="name" placeholder="Nama" style="flex: 2;"/>
+            <field name="gelar" placeholder="Gelar" style="flex: 1;"/>
+        </div>
       </xpath>
 
       <!-- Ubah label Work Phone -->

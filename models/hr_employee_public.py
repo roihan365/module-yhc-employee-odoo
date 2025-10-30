@@ -20,7 +20,7 @@ class HrEmployeePublic(models.Model):
     no_kk = fields.Char(related="employee_id.no_kk", readonly=True)
 
     no_akta = fields.Char(related="employee_id.no_akta", readonly=True)
-    nama_akta = fields.Date(related="employee_id.nama_akta", readonly=True)
+    nama_akta = fields.Char(related="employee_id.nama_akta", readonly=True)
     birthday_akta = fields.Date(related="employee_id.birthday_akta", readonly=True)
 
     place_of_birth = fields.Char(related="employee_id.place_of_birth", readonly=True)
