@@ -12,11 +12,12 @@ class HrEmployeeRewardPunishment(models.Model):
         ('punishment', 'Punishment'),
     ], string='Tipe', required=True, default='reward', store=True)
 
-    reward_category = fields.Selection([
-        ('gathering', 'Gathering'),
-        ('program_sekolah', 'Program Sekolah'),
-        ('program_yayasan', 'Program Yayasan'),
-    ], string='Kategori Reward', store=True)
+    # reward_category = fields.Selection([
+    #     ('gathering', 'Gathering'),
+    #     ('program_sekolah', 'Program Sekolah'),
+    #     ('program_yayasan', 'Program Yayasan'),
+    # ], string='Kategori Reward', store=True)
+    reward_category_id = fields.Many2one('hr.employee.reward.category', string="Kategori Reward", ondelete='cascade')
 
     punishment_category = fields.Selection([
         ('st1', 'Surat Teguran 1'),
@@ -32,3 +33,9 @@ class HrEmployeeRewardPunishment(models.Model):
     supporting = fields.Binary("Bukti Pendukung")
     supporting_filename = fields.Char("Bukti Filename")
     description = fields.Char(string='Keterangan')
+
+class RewardCategory(models.Model):
+    _name = 'hr.employee.reward.category'
+    _description = 'Kategori Reward Karyawan'
+
+    name = fields.Char(string='Nama Kategori', required=True, store=True)
